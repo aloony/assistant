@@ -974,12 +974,23 @@ def recording_proc_with_non_blocking_stdout(
             "-",
         )
     elif input_method == "PW-CAT":
+        # cmd = (
+        #     "pw-cat",
+        #     "--record",
+        #     "--format=s16",
+        #     "--rate",
+        #     str(sample_rate),
+        #     "--channels=1",
+        #     "-",
+        # )
+        # TODO: add option to record sinks and find them by device names
         cmd = (
             "pw-cat",
             "--record",
             "--format=s16",
             "--rate",
             str(sample_rate),
+            "--target=151",
             "--channels=1",
             "-",
         )
@@ -1745,7 +1756,8 @@ def argparse_create_begin(
     subparse.add_argument(
         "--idle-time",
         dest="idle_time",
-        default=0.1,
+        default=0.5,
+        # default=0.0,
         type=float,
         metavar="SECONDS",
         help=(
